@@ -6,7 +6,10 @@ poetry run python ./career_debug/main.py career questions "career questions to a
 poetry run python ./career_debug/main.py career job "https://example.com/job/123"
 poetry run python ./career_debug/main.py career done "what I did"
 
-notes, questions, job, and done append to data/career.md.
-data folder is are gitignored.
+Chat, run separately from the commands above:
+poetry run python ./career_debug/llm.py
 
-
+notes, questions, job, and done append to data/data.md.
+The chat reads that file, asks the local model, and appends the answer there too.
+Ollama stays running. Each command starts, does one thing, and exits.
+data folder is gitignored.

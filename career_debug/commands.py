@@ -9,11 +9,6 @@ Usage:
 """
 
 import argparse
-from datetime import datetime
-from pathlib import Path
-from config import MAIN_DIR
-
-LOG_PATH = MAIN_DIR / "data" / "career.md"
 
 
 class CustomParser:
@@ -52,16 +47,3 @@ class CustomParser:
     def parse(self) -> argparse.Namespace:
         """Parse the command line arguments."""
         return self.parser.parse_args()
-
-
-def append_entry(kind: str, text: str, path: Path = LOG_PATH) -> Path:
-    """Append one timestamped entry to the career markdown log."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if not path.exists():
-        path.write_text("# Career log\n", encoding="utf-8")
-
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
-    entry = f"\n## {timestamp}\n\n**{kind}**\n\n{text.strip()}\n"
-    with path.open("a", encoding="utf-8") as handle:
-        handle.write(entry)
-    return path
