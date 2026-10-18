@@ -1,19 +1,18 @@
+"""
+Run the career debug CLI.
+"""
+
 from commands import CustomParser
+from files import append_entry
 
-def run_cli():
-    cp = CustomParser()
-    cp.initiate_parse()
-    cp.add_career_parser()
-    cp.add_notes_parser()
-    cp.add_questions_parser()
 
-    args = cp.parser.parse_args()
+def run_cli() -> None:
+    """Run the career debug CLI."""
+    args = CustomParser().parse()
+    path = append_entry(text=args.text)
+    # TODO: replace with logging system
+    print(f"Saved {args.career_action} to {path}")
 
-    if args.command == "career":
-        if args.career_action == "notes":
-            print(args.notes)
-        elif args.career_action == "questions":
-            print(args.questions)
 
 if __name__ == "__main__":
     run_cli()
