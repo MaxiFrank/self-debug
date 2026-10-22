@@ -6,14 +6,15 @@ from datetime import datetime
 from pathlib import Path
 from config import MAIN_DIR
 
-LOG_PATH = MAIN_DIR / "data" / "data.md"
+DATA_DIR = MAIN_DIR / "data"
+LOG_PATH = DATA_DIR / "data.md"
 
 
-def read_file(path=LOG_PATH):
-    """Read the content of the career log file."""
-    with open(path, encoding="utf-8") as f:
-        content = f.read()
-        return content
+def read_file(file: str, directory: Path = DATA_DIR) -> str:
+    """Read a file from the data directory."""
+    path = directory / file
+    with path.open(encoding="utf-8") as handle:
+        return handle.read()
 
 
 def append_entry(text: str, path: Path = LOG_PATH) -> Path:

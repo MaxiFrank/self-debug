@@ -1,10 +1,10 @@
 """
-Write career notes, questions, job URLs, and what you've done.
+Write career notes, questions, resource URLs, and what you've done.
 
 Usage:
     python career_debug/main.py career notes "I'm feeling overwhelmed"
     python career_debug/main.py career questions "What are the best ways to learn Python?"
-    python career_debug/main.py career job "https://www.linkedin.com/jobs/view/3821301999/"
+    python career_debug/main.py career resource "https://www.thisisgoodresource.com"
     python career_debug/main.py career done "I finished the Python tutorial"
 """
 
@@ -18,7 +18,7 @@ class CustomParser:
 
     def __init__(self) -> None:
         self.parser = argparse.ArgumentParser(
-            description="Save career notes, questions, job URLs, and what you've done.",
+            description="Save career notes, questions, resource URLs, and what you've done.",
         )
         self._add_commands()
 
@@ -38,8 +38,8 @@ class CustomParser:
         )
         questions.add_argument("text", help="The question to save")
 
-        job = career_subparsers.add_parser("job", help="Save a job posting URL")
-        job.add_argument("text", help="Job posting URL")
+        resource = career_subparsers.add_parser("resource", help="Save a resource URL")
+        resource.add_argument("text", help="Resource URL")
 
         done = career_subparsers.add_parser("done", help="Save what you've done")
         done.add_argument("text", help="What you did")
